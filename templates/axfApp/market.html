@@ -6,12 +6,74 @@
 {% endblock linkscript %}
 
 {% block base %}
-    <h1>xiaojiayu</h1>
-<h1>xiaojiayu</h1>
-<h1>xiaojiayu</h1>
-<h1>xiaojiayu</h1>
-<h1>xiaojiayu</h1>
-<h1>xiaojiayu</h1>
+    <div id="market">
+        <aside>
+            <menu>
+                <ul>
+                    {% for item in leftSlider %}
+                    <li>
+                        <a href="/market/{{item.typeid}}/0/0/">{{item.typename}}</a>
+                        <span class="yellowSlide"></span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </menu>
+        </aside>
+
+        <section>
+            <nav>
+                <ul>
+                    <li><span id="alltypebtn">全部类型<span class="glyphicon glyphicon-chevron-down" style="..."></span></span></li>
+                    <li><span id="showsortbtn">综合排序<span class="glyphicon glyphicon-chevron-down" style="..."></span></span></li>
+                </ul>
+            </nav>
+            
+            <menu>
+                {% csrf_token %}
+                <ul>
+                    {% for item in productList %}
+                    <li>
+                        <a href="#">
+                            <img src="{{item.productimg}}">
+                            <article class="shoppinginfo">
+                                <h6>{{item.productlongname}}</h6>
+                                <p class="detailTag"><span>精选</span><span>热销中</span></p>
+                                <span class="unit"></span>
+                                <p class="price">
+                                    <span>￥{{item.price}}</span>
+                                    <s><span>￥{{item.marketprice}}</span></s>
+                                </p>
+                            </article>
+                        </a>
+                        <section>
+                            <button class="subShopping">-</button>
+                            <span id="num_{{item.id}}">0</span>
+                            <button onclick="addShop({{item.id}})" class="addShopping">+</button>
+                        </section>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div id="typediv">
+                    <div>
+                        {% for item in childList %}
+                        <a href="/market/{{categoryid}}/{{item.childid}}/0/"><span>{{item.childName}}</span></a>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <div id="sortdiv">
+                    <div>
+                    <a class="sorta" href="/market/{{categoryid}}/{{cid}}/0/"><span>综合排序</span></a>
+                    <a class="sorta" href="/market/{{categoryid}}/{{cid}}/1/"><span>销量排序</span></a>
+                    <a class="sorta" href="/market/{{categoryid}}/{{cid}}/2/"><span>价格最低</span></a>
+                    <a class="sorta" href="/market/{{categoryid}}/{{cid}}/3/"><span>价格最高</span></a>
+                    </div>
+
+                </div>
+            </menu>
+        </section>
+        
+    </div>
 
 
 {% endblock base %}

@@ -34,7 +34,7 @@ footer {
 }
 
 footer a {
-    display: block;
+    display: inline-block;
     width: 24% !important;
     text-align: center;
     overflow: hidden !important;
@@ -67,7 +67,7 @@ footer .market span {
     background-size: 0.513889rem;
 }
 
-footer .cart span {
+footer .car span {
     background: url(/static/main/img/cart.png) no-repeat;
     background-size: 0.513889rem;
 }
@@ -85,7 +85,7 @@ a:link {
     text-decoration: none
 }
 
-a:visited {
+a:visited  {
     text-decoration: none
 }
 

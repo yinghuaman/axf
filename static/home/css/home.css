@@ -1,6 +1,15 @@
+footer .home span {
+    background: url(/static/main/img/home_selected.png) no-repeat;
+    background-size: 0.513889rem;
+}
+
+.home dl dd {
+    color: orange;
+}
+
 #home{
 	padding: 1.5rem 0;
-	font-family: "微软雅黑","book antiqua";
+	font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;
 	overflow: auto;
 	height: 100%;
 	width: 100%;

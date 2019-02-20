@@ -1,0 +1,42 @@
+{% extends 'axfApp/base.html' %}
+
+{% block linkscript %}
+    <link type="text/css" rel="stylesheet" href="/static/mine/css/register.css">
+    <script src="/static/mine/js/register.js"></script>
+{% endblock linkscript %}
+
+{% block base %}
+<div id="register">
+    <div id="header">
+        <a href="/mine/"><p>返回</p></a>
+    </div>
+    <form action="/register/" method="post" enctype="multipart/form-data" class="form-horizontal">
+        {% csrf_token %}
+        <div class="input-group">
+            <span class="input-group-addon">账号：</span>
+                <input id="account" type="text" class="form-control" placeholder="账号应包含8~20个字符" aria-describedby="basic-addon1" name="userAccount">
+        </div>
+        <span id="accounterr" class="error">账号格式输入错误</span>
+        <span id="checkerr" class="error">账号已被注册，请重新输入</span>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">密码：</span>
+            <input type="password" id="psd" class="form-control" placeholder="密码应包含6~16个字符" aria-describedby="basic-addon1" name="password">
+        </div>
+         <span id="passworderr" class="error">密码格式输入错误</span>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">确认密码：</span>
+            <input type="password" id="confirmpsd" class="form-control" placeholder="再次输入密码" aria-describedby="basic-addon1" name="confirmpassword">
+        </div>
+         <span id="confirmerr" class="error">两次输入的密码不一致</span>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">邮箱：</span>
+            <input type="email" id="email" class="form-control" placeholder="邮箱" aria-describedby="basic-addon1" name="email">
+        </div>
+         <span id="emailerr" class="error">邮箱已被注册，重新输入</span>
+        <br>
+        </form>
+</div>
+{% endblock base %}

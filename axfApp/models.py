@@ -49,3 +49,41 @@ class Mainshow(models.Model):
     price3 = models.CharField(max_length=10)
     marketprice3 = models.CharField(max_length=10)
 
+class FoodType(models.Model):
+    typeid = models.CharField(max_length=10)
+    typename = models.CharField(max_length=50)
+    childtypenames = models.CharField(max_length=200)
+    typesort = models.IntegerField(default=1)
+
+class Goods(models.Model):
+    productid = models.CharField(max_length=16)  # 商品的id
+    productimg = models.CharField(max_length=200)  # 商品的图片
+    productname = models.CharField(max_length=100)  # 商品的名称
+    productlongname = models.CharField(max_length=200)  # 商品的规格
+    isxf = models.IntegerField(default=1) #是否精选
+    pmdesc = models.CharField(max_length=100)  #是否买一送一
+    specifics = models.CharField(max_length=100)  # 规格
+    price = models.FloatField(default=0)  # 商品的折后价格
+    marketprice = models.FloatField(default=1)  # 商品的原价
+    categoryid = models.CharField(max_length=16)  # 分类的id
+    childcid = models.CharField(max_length=16)  # 子分类的id
+    childcidname = models.CharField(max_length=100)  # 子分类的名称
+    dealerid = models.CharField(max_length=16)
+    storenums = models.IntegerField(default=1)  # 库存
+    productnum = models.IntegerField(default=1)  # 销量排序
+
+class User(models.Model):
+    userAccount = models.CharField(max_length=20)
+    username = models.CharField(max_length=32,unique=True)
+    password = models.CharField(max_length=256)
+    userPhone = models.CharField(max_length=15)
+    userRank = models.IntegerField()
+    email = models.CharField(max_length=64, unique=True)
+    userToken = models.CharField(max_length=50)#保证在没有关闭网站前一直保存用户信息
+    icon = models.ImageField(upload_to='icon')
+    is_delete = models.BooleanField(default=False)
+    @classmethod
+    def createuser(cls,userAccount,username,password,userPhone,userRank,email,userToken,icon,is_delete):
+        u = cls(userAccount=userAccount,username=username,password=password,userPhone=userPhone,userRank=userRank,email=email,userToken=userToken,icon=icon,is_delete=is_delete)
+        return u
+

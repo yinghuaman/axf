@@ -1,0 +1,26 @@
+{% extends 'axfApp/base.html' %}
+
+{% block linkscript %}
+    <link type="text/css" rel="stylesheet" href="/static/mine/css/login.css">
+    <script src="/static/mine/js/login.js"></script>
+{% endblock linkscript %}
+
+{% block base %}
+<div id="login">
+    <div id="header">
+        <a href="/mine/"><p>返回</p></a>
+    </div>
+    <form action="/login/" method="post" >
+        {% csrf_token %}
+        <div class="input-group">
+            <span class="input-group-addon">用户名：</span>
+                <input id="username" type="text" class="form-control">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">密码：</span>
+            <input type="password" id="psd" class="form-control">
+        </div>
+        </form>
+</div>
+{% endblock base %}
