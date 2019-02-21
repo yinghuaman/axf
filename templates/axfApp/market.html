@@ -46,9 +46,9 @@
                             </article>
                         </a>
                         <section>
-                            <button class="subShopping">-</button>
-                            <span id="num_{{item.id}}">0</span>
-                            <button onclick="addShop({{item.id}})" class="addShopping">+</button>
+                            <button class="subShopping" ga="{{item.productid}}">-</button>
+                            <span id="{{item.productid}}">0</span>
+                            <button class="addShopping" ga="{{item.productid}}">+</button>
                         </section>
                     </li>
                     {% endfor %}

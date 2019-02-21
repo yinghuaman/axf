@@ -80,10 +80,26 @@ class User(models.Model):
     userRank = models.IntegerField()
     email = models.CharField(max_length=64, unique=True)
     userToken = models.CharField(max_length=50)#保证在没有关闭网站前一直保存用户信息
-    icon = models.ImageField(upload_to='icon')
+    icon = models.CharField(max_length=150)
     is_delete = models.BooleanField(default=False)
     @classmethod
-    def createuser(cls,userAccount,username,password,userPhone,userRank,email,userToken,icon,is_delete):
+    def createuser(cls,userAccount,username,password,userPhone,userRank,email,userToken,icon,is_delete=False):
         u = cls(userAccount=userAccount,username=username,password=password,userPhone=userPhone,userRank=userRank,email=email,userToken=userToken,icon=icon,is_delete=is_delete)
         return u
+
+class Cart(models.Model):
+    userAccount = models.CharField(max_length=20)
+    productid = models.CharField(max_length=10)
+    productnum = models.IntegerField()
+    productprice = models.FloatField()
+    isChose = models.BooleanField(default=True)
+    productimg = models.CharField(max_length=150)
+    productname = models.CharField(max_length=100)
+    orderid = models.CharField(max_length=20,default="0")
+    lsDelete = models.BooleanField(default=False)
+    @classmethod
+    def createcart(cls,userAccount,productid,productnum,productprice,isChose,productimg,productname,orderid,lsDelete):
+        cart = cls(userAccount=userAccount,productid=productid,productnum=productnum,productprice=productprice,isChose=isChose,productimg=productimg,productname=productname,orderid=orderid,lsDelete=lsDelete)
+        return cart
+
 

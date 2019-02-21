@@ -14,12 +14,15 @@
         {% csrf_token %}
         <div class="input-group">
             <span class="input-group-addon">用户名：</span>
-                <input id="username" type="text" class="form-control">
+                <input id="username" type="text" class="form-control" name="username">
         </div>
         <br>
         <div class="input-group">
             <span class="input-group-addon">密码：</span>
-            <input type="password" id="psd" class="form-control">
+            <input type="password" id="psd" class="form-control" name="password">
+        </div>
+        <div class="input-group">
+            <input type="submit" class="form-control" value="登陆">
         </div>
         </form>
 </div>

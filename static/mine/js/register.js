@@ -3,13 +3,15 @@ $(document).ready(function(){
 	var passwd = document.getElementById("psd")
 	var passd = document.getElementById("confirmpsd")
 	var email = document.getElementById("email")
+	var phone = document.getElementById("tel")
 
 	var accounterr = document.getElementById("accounterr")
 	var checkerr = document.getElementById("checkerr")
 	var passworderr = document.getElementById("passworderr")
 	var confirmerr = document.getElementById("confirmerr")
 	var emailerr = document.getElementById("emailerr")
-
+	var phoneerr = document.getElementById("phoneerr")
+	var phonecheckerr = document.getElementById("phonecheckerr")
 
 	account.addEventListener("focus",function(){
 		accounterr.style.display = "none"
@@ -57,6 +59,23 @@ $(document).ready(function(){
 	    $.post("/checkemail/",{"email":instr},function(data){
 			if(data.status == "error"){
 				emailerr.style.display = "block"
+			}
+		})
+	},false)
+
+	phone.addEventListener("focus",function(){
+		phoneerr.style.display = "none"
+		phonecheckerr.style.display = "none"
+	},false)
+	phone.addEventListener("blur",function(){
+		var instr = this.value
+		if(instr.length > 15){
+			phoneerr.style.display = "block"
+			return
+		};
+		$.post("/checkusertel/",{"usertel":instr},function(data){
+			if(data["status"] == "error"){
+				phonecheckerr.style.display = "block"
 			}
 		})
 	},false)

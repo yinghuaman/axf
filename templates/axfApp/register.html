@@ -16,8 +16,11 @@
             <span class="input-group-addon">账号：</span>
                 <input id="account" type="text" class="form-control" placeholder="账号应包含8~20个字符" aria-describedby="basic-addon1" name="userAccount">
         </div>
-        <span id="accounterr" class="error">账号格式输入错误</span>
-        <span id="checkerr" class="error">账号已被注册，请重新输入</span>
+        <br>
+         <div class="input-group">
+            <span class="input-group-addon">昵称：</span>
+                <input id="username" type="text" class="form-control" placeholder="昵称应包含8~20个字符" aria-describedby="basic-addon1" name="username">
+        </div>
         <br>
         <div class="input-group">
             <span class="input-group-addon">密码：</span>
@@ -32,11 +35,26 @@
          <span id="confirmerr" class="error">两次输入的密码不一致</span>
         <br>
         <div class="input-group">
+            <span class="input-group-addon">联系方式：</span>
+            <input type="text" id="tel" class="form-control" placeholder="电话" aria-describedby="basic-addon1" name="userPhone">
+        </div>
+        <span id="phoneerr" class="error">号码格式输入有误，重新输入</span>
+        <span id="phonecheckerr" class="error">号码已被注册，重新输入</span>
+        <br>
+        <div class="input-group">
             <span class="input-group-addon">邮箱：</span>
             <input type="email" id="email" class="form-control" placeholder="邮箱" aria-describedby="basic-addon1" name="email">
         </div>
          <span id="emailerr" class="error">邮箱已被注册，重新输入</span>
         <br>
+        <div class="input-group">
+            <span class="input-group-addon">上传头像：</span>
+            <input type="file" id="img" class="form-control" placeholder="图片" aria-describedby="basic-addon1" name="img">
+        </div>
+        <br>
+        <div>
+            <input type="submit" value="注册">
+        </div>
         </form>
 </div>
 {% endblock base %}

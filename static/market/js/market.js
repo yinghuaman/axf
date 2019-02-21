@@ -25,4 +25,39 @@ $(document).ready(function(){
     sortdiv.addEventListener("click",function(){
         sortdiv.style.display = "none"
     },false)
+
+    //修改购物车
+    var addShoppings = document.getElementsByClassName("addShopping")
+    var subShoppings = document.getElementsByClassName("subShopping")
+
+    for (var i=0;i<addShoppings.length;i++){
+        addShopping = addShoppings[i]
+        addShopping.addEventListener("click",function(){
+            pid = this.getAttribute("ga")
+            $.post("/changecart/0/",{"productid":pid},function(data){
+                if(data.status == "success"){
+                    //添加成功，将中间的innerHTML变成当前的数量
+                    document.getElementById(pid).innerHTML = data.data
+                }
+                else{
+                    if(data.data == -1){
+                        window.location.href = "http://127.0.0.1:8000/login/"
+                    }
+                }
+            })
+        })
+    }
+
+    for (var i=0;i<subShoppings.length;i++){
+        subShopping = subShoppings[i]
+        subShopping.addEventListener("click",function(){
+            pid = this.getAttribute("ga")
+            $.post("/changecart/1/",{"productid":pid},function(data){
+                if(data.status == "success"){
+                    //减少一个，将中间的innerHTML变成当前的数量
+                }
+            })
+        })
+    }
+
 })
