@@ -5,6 +5,7 @@ urlpatterns = [
     url(r"^market/(\d+)/(\d+)/(\d+)/$",views.market,name="market"),
     #修改购物车
     url(r"^changecart/(\d+)/$",views.changecart,name="changecart"),
+    url(r"^saveorder/$",views.saveorder,name="saveorder"),
     url(r"^car/$",views.car,name="car"),
     url(r"^mine/$",views.mine,name="mine"),
     url(r"^login/$",views.login,name="login"),

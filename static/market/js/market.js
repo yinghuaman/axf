@@ -37,7 +37,8 @@ $(document).ready(function(){
             $.post("/changecart/0/",{"productid":pid},function(data){
                 if(data.status == "success"){
                     //添加成功，将中间的innerHTML变成当前的数量
-                    document.getElementById(pid).innerHTML = data.data
+
+                    document.getElementById(pid).innerHTML = (data.data)[0]
                 }
                 else{
                     if(data.data == -1){
@@ -55,6 +56,19 @@ $(document).ready(function(){
             $.post("/changecart/1/",{"productid":pid},function(data){
                 if(data.status == "success"){
                     //减少一个，将中间的innerHTML变成当前的数量
+                    if ((data.data)[0] == 0){
+                        subShopping.style.display = "none"
+                        document.getElementById(pid).innerHTML = ""
+                    }
+                    else{
+                        subShopping.style.display = "inline-block"
+                        document.getElementById(pid).innerHTML = (data.data)[0]
+                    }
+                }
+                else{
+                    if(data.data == -1){
+                        window.location.href = "http://127.0.0.1:8000/login/"
+                    }
                 }
             })
         })

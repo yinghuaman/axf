@@ -86,7 +86,12 @@ class User(models.Model):
     def createuser(cls,userAccount,username,password,userPhone,userRank,email,userToken,icon,is_delete=False):
         u = cls(userAccount=userAccount,username=username,password=password,userPhone=userPhone,userRank=userRank,email=email,userToken=userToken,icon=icon,is_delete=is_delete)
         return u
-
+class CartManager1(models.Manager):
+    def get_queryset(self):
+        return super(CartManager1,self).get_queryset().filter(lsDelete=False)
+class CartManager2(models.Manager):
+    def get_queryset(self):
+        return super(CartManager2,self).get_queryset().filter(lsDelete=True)
 class Cart(models.Model):
     userAccount = models.CharField(max_length=20)
     productid = models.CharField(max_length=10)
@@ -97,9 +102,21 @@ class Cart(models.Model):
     productname = models.CharField(max_length=100)
     orderid = models.CharField(max_length=20,default="0")
     lsDelete = models.BooleanField(default=False)
+    objects = CartManager1()#不用更改数据库字段，所以就不用再迁移
+    obj = CartManager2()
     @classmethod
     def createcart(cls,userAccount,productid,productnum,productprice,isChose,productimg,productname,orderid,lsDelete):
         cart = cls(userAccount=userAccount,productid=productid,productnum=productnum,productprice=productprice,isChose=isChose,productimg=productimg,productname=productname,orderid=orderid,lsDelete=lsDelete)
         return cart
 
+
+class Order(models.Model):
+    orderid = models.CharField(max_length=20)
+    userAccount = models.CharField(max_length=20)
+    progress = models.IntegerField()
+
+    @classmethod
+    def createorder(cls,orderid,userAccount,progress):
+        order = cls(orderid=orderid,userAccount=userAccount,progress=progress)
+        return order
 

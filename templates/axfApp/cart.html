@@ -13,8 +13,8 @@
         <div class="full">
             <section class="clear">
                 <ul>
-                    <li>收货人:xiaojiayu</li>
-                    <li>电话:8008208820 <div><p><span><a href="#">修改&gt;</a></span></p></div></li>
+                    <li>收货人:{{userAccount}}</li>
+                    <li>电话:{{userPhone}} <div><p><span><a href="#">修改&gt;</a></span></p></div></li>
                     <li>收货地址:宝胜北里西区28号天丰利商城</li>
                 </ul>
                 <div class="bill">
@@ -37,41 +37,40 @@
                 <menu>
                     <ul>
                         <!--购物车信息展示-->
-                        {% for item in carList %}
-                            <li class="menuList" cartid="{{item.productid}}">
+                        {% for item in cartList %}
+                            <li class="menuList" id="{{item.productid}}li">
                                 <div class="confirm">
-                                    <span id="ischose" class="single-select">
-                                        {% ifequal True item.isChose %}
-                                        <span>√</span>
-                                        {% endifequal %}
+                                    <span class="single-select" goodsid="{{item.productid}}">
+                                        <span id="{{item.productid}}a">√</span>
                                     </span>
                                 </div>
                                 <a href="#">
                                     <img src="{{ item.productimg }}" alt="item.productname">
                                     <p>{{ item.productname }}</p>
-                                    <p class="singleprice">￥{{ item.productprice }}</p>
+                                    <p class="singleprice" id="{{item.productid}}price">￥{{ item.productprice }}</p>
                                 </a>
                                 <section>
                                     {% csrf_token %}
                                     <button class="subShopping" ga="{{item.productid}}">-</button>
-                                    <span>{{ item.productnum }}</span>
+                                    <span id="{{item.productid}}">{{ item.productnum }}</span>
                                     <button class="addShopping" ga="{{item.productid}}">+</button>
                                 </section>
                             </li>
+                        {% empty %}
+
                         {% endfor %}
                         <!--购物车数据处理结束-->
 
                         <li class="payTheBill">
-                            <div class="confirm" id="all_select">
+                            <div class="confirm">
                                 <span>
-                                    {%if trueFlag %}
-                                        <span>√</span>
-                                    {% endif %}
+                                    <span id="all_select" >√</span>
                                 </span>
                             </div>
                             <p>
                                 <span>全选</span>
                                 <span>总价:</span>
+                                <span id="totalprice">{{totalprice}}</span>
                             </p>
                             <span id="ok"><a href="#">下单</a></span>
                         </li>
