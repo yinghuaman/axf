@@ -170,23 +170,6 @@ def saveorder(request):
         item.save()#保存到数据库
     return JsonResponse({"status": "success"})
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def mine(request):
     username = request.session.get("username","未登录")
     if username == "未登录":
